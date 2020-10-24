@@ -15,6 +15,11 @@ class Movie(models.Model):
 	likes = models.PositiveSmallIntegerField('Likes', null=True, blank=True)
 	
 
+class Like(models.Model):
+	movie = models.ForeignKey('Movie', related_name='like_movie', on_delete=models.CASCADE)
+	user = models.ForeignKey('auth.User', related_name='like_user', on_delete=models.CASCADE)
+
+
 class Rental(models.Model):
 	rental_id = models.AutoField(primary_key=True)
 	rental_date = models.DateTimeField('Rental date', auto_now_add=True, null=True,blank=True)
