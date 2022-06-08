@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from auditlog.registry import auditlog
 
 
 class Movie(models.Model):
@@ -14,6 +15,7 @@ class Movie(models.Model):
 	availability = models.BooleanField('Availability', default=True)
 	likes = models.PositiveSmallIntegerField('Likes', null=True, blank=True)
 	
+auditlog.register(Movie, include_fields=['title','rental_price','sale_price'])
 
 class Like(models.Model):
 	movie = models.ForeignKey('Movie', related_name='like_movie', on_delete=models.CASCADE)
