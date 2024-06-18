@@ -41,7 +41,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 	@action(detail=True, methods=['get'], permission_classes=[permissions.IsAuthenticated])
 	def like(self, request, *args, **kwargs):
 		movie = self.get_object()
-
+		serializer = MovieLikeSerializer(movie, data=request.data)
 		if serializer.is_valid(): 
 			if self.is_like_valid(movie, request.user):
 				movie.likes = movie.likes + 1 if movie.likes else 1
