@@ -15,6 +15,9 @@ class Movie(models.Model):
 	availability = models.BooleanField('Availability', default=True)
 	likes = models.PositiveSmallIntegerField('Likes', null=True, blank=True)
 	
+	def __str__(self):
+		return self.title
+
 auditlog.register(Movie, include_fields=['title','rental_price','sale_price'])
 
 class Like(models.Model):
@@ -37,3 +40,8 @@ class Purchase(models.Model):
 	user = models.ForeignKey('auth.User', related_name="purchase_user", on_delete=models.CASCADE)
 	movie = models.ForeignKey('Movie', related_name='purchase_movie', on_delete=models.CASCADE)
 	cost = models.DecimalField('Cost', max_digits=6, decimal_places=2, default=0.0,null=True, blank=True)
+
+
+
+
+	
