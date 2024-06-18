@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Consuming API</h1>
+	<div id="content"></div>
+</body>
+
+<script type="text/javascript">
+	
+	const API_URL = 'http://localhost:8585';
+	/*
+	const xhr = new XMLHttpRequest();
+	function onRequestHandler() {
+		if(this.readyState === 4 && this.status === 200){
+			const data = JSON.parse(this.response);
+			console.log(data)
+			console.log(data.results)
+
+			const data_template = data.results.map((movie) => `<li>${movie.title}: ${movie.description}</li>`);
+			document.getElementById("content").innerHTML = `<ul>${data_template}</ul>`;
+		}
+	}
+
+	xhr.addEventListener("load", onRequestHandler);
+	xhr.open("GET", `${API_URL}/movies`);
+	xhr.send();
+	*/
+
+	/*
+	const HTMLResponse = document.querySelector("#content");
+	const ul = document.createElement("ul");
+	
+	fetch(`${API_URL}/movies`)
+		.then((response) => response.json())
+		.then((results) => {
+			results.results.forEach((movie) =>{
+				let li = document.createElement("li");
+				li.appendChild(document.createTextNode(`${movie.title}: ${movie.description}`));
+				ul.appendChild(li);
+			})
+			HTMLResponse.appendChild(ul);
+		})
+	*/
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.shortcuts import render
 
 class MovieViewSet(viewsets.ModelViewSet):
 	"""
@@ -73,3 +75,8 @@ class MovieViewSet(viewsets.ModelViewSet):
 			return False #Este usuario no ha dado like anteriormente a esta pelicula
 		return True
 
+
+@ensure_csrf_cookie
+def testView(request):
+	
+	return render(request, 'index.html',{})
