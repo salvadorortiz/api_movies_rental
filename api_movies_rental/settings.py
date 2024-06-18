@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'movies_rental',
     'django_filters',
     'rest_framework_swagger',
+    'auditlog',
 ]
 
 MIDDLEWARE = [
