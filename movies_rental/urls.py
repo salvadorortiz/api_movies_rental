@@ -14,6 +14,7 @@ router.register(r'purchases', views.PurchaseViewSet, basename='purchase')
 # The API URLs are now determined automatically by the router
 urlpatterns = [
 	path('', include(router.urls)),
+	path('test/', views.testView),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

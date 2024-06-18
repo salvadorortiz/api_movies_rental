@@ -7,6 +7,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.shortcuts import render
 
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
@@ -97,3 +99,8 @@ class PurchaseViewSet(viewsets.ModelViewSet):
 	serializer_class = PurchaseSerializer
 	permission_classes = [permissions.IsAuthenticated]
 
+
+@ensure_csrf_cookie
+def testView(request):
+	
+	return render(request, 'index.html',{})

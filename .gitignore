@@ -1,0 +1,5 @@
+# Ignore Visual Studio Code workspace files
+*.code-workspace
+
+# Ignore Python compiled files
+*.pyc
