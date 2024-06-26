@@ -1,5 +1,8 @@
 # Ignore Visual Studio Code workspace files
 *.code-workspace
 
-# Ignore Python compiled files
-*.pyc
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc	
+*.pyo
+*.py[cod]
