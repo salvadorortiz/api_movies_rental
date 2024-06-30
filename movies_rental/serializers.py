@@ -28,7 +28,7 @@ class MovieLikeSerializer(serializers.ModelSerializer):
 class RentalSerializer(serializers.HyperlinkedModelSerializer):
 	url = serializers.HyperlinkedIdentityField(view_name="rental-detail")
 	return_date = serializers.DateTimeField(format='%d-%m-%Y',input_formats=['%d-%m-%Y',])
-	rental_date = serializers.DateTimeField(format='%d-%m-%Y',input_formats=['%d-%m-%Y',])
+	#rental_date = serializers.DateTimeField(format='%d-%m-%Y',input_formats=['%d-%m-%Y',])
 	#movies = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='movie-detail')
 	#movies = MovieSerializer(read_only=True,many=True)
 
@@ -39,7 +39,7 @@ class RentalSerializer(serializers.HyperlinkedModelSerializer):
 
 class PurchaseSerializer(serializers.HyperlinkedModelSerializer):
 	url = serializers.HyperlinkedIdentityField(view_name="purchase-detail")
-	purchase_date = serializers.DateTimeField(format='%d-%m-%Y',input_formats=['%d-%m-%Y',])
+	#purchase_date = serializers.DateTimeField(format='%d-%m-%Y',input_formats=['%d-%m-%Y',])
 
 	class Meta:
 		model = Purchase

@@ -13,3 +13,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 		# Write permissions are only allowed to the owner of the snippet.
 		return obj.owner == request.user
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+	"""
+	Custom permission to only allow admin users to have full access.
+	"""
+
+	def has_permission(self, request, view):
+		if request.user and request.user.is_staff:
+			return True
+		if view.action in ['list', 'retrieve', 'create']:
+			return True
+		return False

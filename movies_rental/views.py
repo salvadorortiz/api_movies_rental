@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from movies_rental.models import Movie,Like,Rental,Purchase
-#from movies_rental.permissions import IsOwnerOrReadOnly
+from movies_rental.permissions import IsAdminOrReadOnly#IsOwnerOrReadOnly
 from movies_rental.serializers import MovieSerializer, MovieLikeSerializer, RentalSerializer, UserSerializer, PurchaseSerializer
 from rest_framework import permissions, renderers, viewsets
 from rest_framework.decorators import action
@@ -13,6 +13,7 @@ from django.shortcuts import render
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
+	permission_classes = [permissions.IsAdminUser]
 
 class MovieViewSet(viewsets.ModelViewSet):
 	"""
@@ -97,7 +98,22 @@ class PurchaseViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = Purchase.objects.all().order_by('purchase_date')
 	serializer_class = PurchaseSerializer
-	permission_classes = [permissions.IsAuthenticated]
+	permission_classes = [permissions.IsAuthenticated, IsAdminOrReadOnly]
+
+	def update(self, request, *args, **kwargs):
+		if not request.user.is_staff:
+			return Response({'detail': 'Method "PUT" not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+		return super().update(request, *args, **kwargs)
+
+	def partial_update(self, request, *args, **kwargs):
+		if not request.user.is_staff:
+			return Response({'detail': 'Method "PATCH" not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+		return super().partial_update(request, *args, **kwargs)
+
+	def destroy(self, request, *args, **kwargs):
+		if not request.user.is_staff:
+			return Response({'detail': 'Method "DELETE" not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+		return super().destroy(request, *args, **kwargs)
 
 
 @ensure_csrf_cookie
